@@ -21,7 +21,7 @@ AY-3-8910（とその派生）/SN76489/SAA1099 に対応
 
 ## Licence
 
-![MIT](https://github.com/Bongorian/Arduino_STM32_PSG/blob/master/LICENSE)
+[MIT](https://github.com/Bongorian/Arduino_STM32_PSG/blob/master/LICENSE)
 
 ## Author
 
