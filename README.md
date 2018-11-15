@@ -19,6 +19,9 @@ AY-3-8910（とその派生）/SN76489/SAA1099 に対応
 ## Usage
 ![image](./schematics.jpg)
 
+書き忘れましたが、SN76489のクロックは4MHz,SAA1099のクロックは8MHzです。
+私は4040で8MHzを分周して使っていました。
+
 ## Licence
 
 [MIT](https://github.com/Bongorian/Arduino_STM32_PSG/blob/master/LICENSE)
