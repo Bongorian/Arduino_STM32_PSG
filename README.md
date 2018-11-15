@@ -26,7 +26,5 @@ AY-3-8910（とその派生）/SN76489/SAA1099 に対応
 
 [bongorian](https://github.com/Bongorian)
 
--- AY-3-8910（とその仲間）,SN76489,SAA1099
-
 
 
