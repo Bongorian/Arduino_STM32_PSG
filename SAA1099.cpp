@@ -1,9 +1,11 @@
-#include "arduino.h"
 #include "SAA1099.h"
+#include "arduino.h"
+
+#include <math.h>
 
 SAA1099::SAA1099(int latch, int clock, int data, int WE, int CS, int AZ)
-    : latchPin(latch), clockPin(clock), dataPin(data), WEPin(WE), CSPin(CS), azPin(AZ)
-{
+    : latchPin(latch), clockPin(clock), dataPin(data), WEPin(WE), CSPin(CS),
+      azPin(AZ) {
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
@@ -13,21 +15,19 @@ SAA1099::SAA1099(int latch, int clock, int data, int WE, int CS, int AZ)
   digitalWrite(CSPin, LOW);
   Reset();
 }
-void SAA1099::SetNote(byte channel, byte notenum)
-{
+void SAA1099::SetNote(byte channel, byte note) {
   SetFreqEnable((1 << channel) & 0xff);
-  int o = (notenum + 1) / 12 - 2;
-  int f = ((notenum + 1) % 12) * 21.2;
+  byte o = (note / 12) - 1;
+  byte note_val = note - ((o + 1) * 12);
+  byte note_addr[] = {5, 32, 60, 85, 110, 132, 153, 173, 192, 210, 227, 243};
   SetOctave(channel, o);
-  SetFreq(channel, f);
+  SetFreq(channel, note_addr[note_val]);
 }
 
-void SAA1099::SetVolume(byte channel, byte volume, byte side)
-{
+void SAA1099::SetVolume(byte channel, byte volume, byte side) {
   byte volL = 0xff & volume;
   byte volR = 0xff & (volume << 4);
-  switch (side)
-  {
+  switch (side) {
   case 0:
     write_data(channel, volL);
     break;
@@ -40,15 +40,12 @@ void SAA1099::SetVolume(byte channel, byte volume, byte side)
   }
 }
 
-void SAA1099::SetFreq(byte channel, byte freq)
-{
+void SAA1099::SetFreq(byte channel, byte freq) {
   write_data((0x08 | channel), freq);
 }
 
-void SAA1099::SetOctave(byte channel, byte octave)
-{
-  switch (channel)
-  {
+void SAA1099::SetOctave(byte channel, byte octave) {
+  switch (channel) {
   case 0:
     write_data(0x10, octave);
     break;
@@ -70,53 +67,33 @@ void SAA1099::SetOctave(byte channel, byte octave)
   }
 }
 
-void SAA1099::SetFreqEnable(byte channelbit)
-{
+void SAA1099::SetFreqEnable(byte channelbit) {
   write_data(0x14, channelbit & 0xff);
 }
 
-void SAA1099::SetNoiseEnable(byte channelbit)
-{
+void SAA1099::SetNoiseEnable(byte channelbit) {
   write_data(0x15, channelbit & 0xff);
 }
 
-void SAA1099::SetNoise(byte noisechannel, byte mode)
-{
+void SAA1099::SetNoise(byte noisechannel, byte mode) {
   write_data(0x16, mode << ((noisechannel << 2) & 0x33));
 }
 
-void SAA1099::SetEnvelope(byte envelopechannel, byte mode)
-{
+void SAA1099::SetEnvelope(byte envelopechannel, byte mode) {
   write_data(0x18 + envelopechannel, mode);
 }
 
-void SAA1099::SoundEnable()
-{
-  write_data(0x1C, 0x01);
-}
+void SAA1099::SoundEnable() { write_data(0x1C, 0x01); }
 
-void SAA1099::Mute()
-{
-  write_data(0x1C, 0x00);
-}
+void SAA1099::Mute() { write_data(0x1C, 0x00); }
 
-void SAA1099::Reset()
-{
-  write_data(0x1C, 0x02);
-}
+void SAA1099::Reset() { write_data(0x1C, 0x02); }
 
-void SAA1099::mode_write()
-{
-  digitalWrite(WEPin, LOW);
-}
+void SAA1099::mode_write() { digitalWrite(WEPin, LOW); }
 
-void SAA1099::mode_inactive()
-{
-  digitalWrite(WEPin, HIGH);
-}
+void SAA1099::mode_inactive() { digitalWrite(WEPin, HIGH); }
 
-void SAA1099::write_data(byte address, byte data)
-{
+void SAA1099::write_data(byte address, byte data) {
   digitalWrite(azPin, HIGH);
   mode_write();
   digitalWrite(latchPin, LOW);
