@@ -17,6 +17,8 @@ SAA1099::SAA1099(int latch, int clock, int data, int WE, int CS, int AZ)
 }
 void SAA1099::SetNote(byte channel, byte note) {
   SetFreqEnable((1 << channel) & 0xff);
+    
+  // Reference: https://github.com/Bobcatmodder/SAATunes
   byte o = (note / 12) - 1;
   byte note_val = note - ((o + 1) * 12);
   byte note_addr[] = {5, 32, 60, 85, 110, 132, 153, 173, 192, 210, 227, 243};
