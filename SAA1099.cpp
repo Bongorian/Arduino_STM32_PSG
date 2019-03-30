@@ -88,14 +88,14 @@ void SAA1099::setNoiseEnable(byte channelbit)
 	writeData(0x15, channelbit & 0xff);
 }
 
-void SAA1099::setNoise(byte noisechannel, byte mode)
+void SAA1099::setNoise(byte noiseChannel, byte mode)
 {
-	writeData(0x16, mode << ((noisechannel << 2) & 0x33));
+	writeData(0x16, mode << ((noiseChannel << 2) & 0x33));
 }
 
-void SAA1099::setEnvelope(byte envelopechannel, byte mode)
+void SAA1099::setEnvelope(byte envelopeChannel, byte mode)
 {
-	writeData(0x18 + envelopechannel, mode);
+	writeData(0x18 + envelopeChannel, mode);
 }
 
 void SAA1099::soundEnable()

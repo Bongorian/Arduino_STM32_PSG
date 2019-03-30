@@ -9,7 +9,7 @@ public:
 	void setNote(byte channel, byte notenum);
 	void setVolume(byte channel, byte volume);
 	void setEnvelope(byte mode);
-	void setEnvelopeTime(byte envelopetime);
+	void setEnvelopeTime(byte envelopeTime);
 	void modeLatch();
 	void modeWrite();
 	void modeInactive();

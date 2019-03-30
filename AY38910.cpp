@@ -35,10 +35,10 @@ void AY38910::setEnvelope(byte mode)
 	writeData(0x0d, 0x08 + mode & 0x0f);
 }
 
-void AY38910::setEnvelopeTime(byte envelopetime)
+void AY38910::setEnvelopeTime(byte envelopeTime)
 {
-	writeData(0x0b, envelopetime & 0xff);
-	writeData(0x0c, (envelopetime >> 8) & 0xff);
+	writeData(0x0b, envelopeTime & 0xff);
+	writeData(0x0c, (envelopeTime >> 8) & 0xff);
 }
 
 void AY38910::modeLatch()
