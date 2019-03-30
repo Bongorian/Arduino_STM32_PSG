@@ -34,7 +34,7 @@ void SN76489::setVolume(byte channel, byte volume)
 	writeData(vol);
 }
 
-void SN76489::SetNoise(byte fb, byte f1, byte f0)
+void SN76489::setNoise(byte fb, byte f1, byte f0)
 {
 	byte data = 0xd0 | (fb << 2) | (f1 << 1) | f0;
 	writeData(data);

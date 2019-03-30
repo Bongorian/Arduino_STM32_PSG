@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.js": "es-beautifier",
+        "cstddef": "cpp"
+    }
+}
