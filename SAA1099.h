@@ -12,8 +12,8 @@ public:
 	void setOctave(byte channel, byte octave);
 	void setFreqEnable(byte channelbit);
 	void setNoiseEnable(byte channelbit);
-	void setNoise(byte noisechannel, byte mode);
-	void setEnvelope(byte envelopechannel, byte mode);
+	void setNoise(byte noiseChannel, byte mode);
+	void setEnvelope(byte envelopeChannel, byte mode);
 	void soundEnable();
 	void mute();
 	void reset();
