@@ -20,8 +20,10 @@ SAA1099::SAA1099(int latch, int clock, int data, int WE, int CS, int AZ)
 	digitalWrite(CSPin, LOW);
 	reset();
 }
+
 void SAA1099::setNote(byte channel, byte note)
 {
+	// Reference: https://github.com/Bobcatmodder/SAATunes
 	setFreqEnable((1 << channel) & 0xff);
 	byte o = (note / 12) - 1;
 	byte note_val = note - ((o + 1) * 12);
