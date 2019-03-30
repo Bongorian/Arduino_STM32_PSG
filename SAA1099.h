@@ -5,24 +5,24 @@
 class SAA1099
 {
 public:
-  SAA1099(int latch, int clock, int data, int WE, int CS, int AZ);
-  void SetNote(byte channel, byte notenum);
-  void SetVolume(byte channel, byte volume, byte side);
-  void SetFreq(byte channel, byte freq);
-  void SetOctave(byte channel, byte octave);
-  void SetFreqEnable(byte channelbit);
-  void SetNoiseEnable(byte channelbit);
-  void SetNoise(byte noisechannel, byte mode);
-  void SetEnvelope(byte envelopechannel, byte mode);
-  void SoundEnable();
-  void Mute();
-  void Reset();
-  void mode_write();
-  void mode_inactive();
-  void write_data(byte address, byte data);
+	SAA1099(int latch, int clock, int data, int WE, int CS, int AZ);
+	void setNote(byte channel, byte notenum);
+	void setVolume(byte channel, byte volume, byte side);
+	void setFreq(byte channel, byte freq);
+	void setOctave(byte channel, byte octave);
+	void setFreqEnable(byte channelbit);
+	void setNoiseEnable(byte channelbit);
+	void setNoise(byte noisechannel, byte mode);
+	void setEnvelope(byte envelopechannel, byte mode);
+	void soundEnable();
+	void mute();
+	void reset();
+	void modeWrite();
+	void modeInactive();
+	void writeData(byte address, byte data);
 
 private:
-  int latchPin, clockPin, dataPin, WEPin, CSPin, azPin;
+	int latchPin, clockPin, dataPin, WEPin, CSPin, azPin;
 };
 
 #endif

@@ -5,18 +5,18 @@
 class AY38910
 {
 public:
-  AY38910(int latch, int clock, int data, int BC1, int BCDIR);
-  void SetNote(byte channel, byte notenum);
-  void SetVolume(byte channel, byte volume);
-  void SetEnvelope(byte mode);
-  void SetEnvelopeTime(byte envelopetime);
-  void mode_latch();
-  void mode_write();
-  void mode_inactive();
-  void write_data(byte address, byte data);
+	AY38910(int latch, int clock, int data, int BC1, int BCDIR);
+	void setNote(byte channel, byte notenum);
+	void setVolume(byte channel, byte volume);
+	void setEnvelope(byte mode);
+	void setEnvelopeTime(byte envelopetime);
+	void modeLatch();
+	void modeWrite();
+	void modeInactive();
+	void writeData(byte address, byte data);
 
 private:
-  int latchPin, clockPin, dataPin, BC1Pin, BCDIRPin;
+	int latchPin, clockPin, dataPin, BC1Pin, BCDIRPin;
 };
 
 #endif
